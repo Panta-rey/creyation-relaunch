@@ -1,0 +1,18 @@
+# Eigene Produkte (Masse immer L × B × H in cm). Preis und Lieferzeit: auf Anfrage.
+- name: MOTU TANE
+  linie: Home
+  masse: "80 × 56 × 40"
+  text: Couchtisch aus lackiertem Holz.
+  farben:
+    - { name: "Pantone 497 C", hex: "#512F2D", bild: motu-tane-497c.jpg }
+    - { name: "Pantone 5757 C", hex: "#6E722E", bild: motu-tane-5757c.jpg }
+    - { name: "Crème", hex: "#E9E3D6", bild: motu-tane-creme.jpg }
+- { name: XIPE 2.0, linie: Home, masse: "69 × 40 × 114", text: "LED-Gewächshaus für bis zu 80 Anzuchttöpfe (7 × 7 cm), gesteckt und erweiterbar." }
+- { name: XIPE 3.0, linie: Home, masse: "69 × 40 × 163", text: "LED-Gewächshaus für bis zu 120 Anzuchttöpfe (7 × 7 cm)." }
+- { name: Die ätherische Toilette, linie: Home, masse: "5,5 × 4 × 5,7", text: "Duft für die Autolüftung, mit ätherischem Öl befüllbar." }
+- { name: Casa del Paw Katzensofa, linie: Haustiere, masse: "40 × 83 × 42", text: "In sieben Stoffen und drei Holztönen." }
+- { name: Vitruvius, linie: Haustiere, masse: "30 × 30 × 20", text: "Beistelltisch für Katzengras." }
+- { name: Katzenhaus, linie: Haustiere, masse: "112 × 54 × 54", text: "Aussenhaus mit einfacher Lüftung (Variante ohne Wärmetauscher)." }
+- { name: Thirsty Koi, linie: Werkstatt, masse: "20 × 15 × 13,3", text: "Oberflächenablauf für den Koiteich, höhenverstellbar bis +2,5 cm." }
+- { name: Mülli, linie: Werkstatt, masse: "30 × 30 × 90", text: "Abfallsackhalter für 110-Liter-Säcke, auf Rollen." }
+- { name: Flohmarkt-Kleiderständer, linie: Werkstatt, masse: "74 × 200 × 175", text: "Mobil und zusammensteckbar." }

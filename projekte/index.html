@@ -1,0 +1,29 @@
+---
+layout: standard
+titel: Projekte
+kurz: Spezialanfertigungen, Raumgestaltung, Installationen, Möbel, 3D-Druck und Camperausbau von Creyation Gafner.
+---
+{% assign alle = site.pages | where_exp: "p", "p.url contains '/projekte/' and p.name == 'index.md'" | sort: "jahr" | reverse %}
+<div class="wrap" id="inhalt">
+  <header class="seitenkopf">
+    <h1>Projekte</h1>
+    <p class="lead">Eine Auswahl aus über 40 Arbeiten seit 2017. Jedes Stück ist für einen bestimmten Ort, eine Idee oder ein Problem entstanden.</p>
+  </header>
+  <ul class="filter" aria-label="Projekte filtern">
+    <li><button type="button" data-filter="" aria-pressed="true">Alle</button></li>
+    {% for k in site.kategorien %}<li><button type="button" data-filter="{{ k | slugify }}" aria-pressed="false">{{ k }}</button></li>{% endfor %}
+  </ul>
+  <div class="karten">
+    {% for p in alle %}
+    {% assign bilder = site.static_files | where_exp: "f", "f.path contains p.dir" | where_exp: "f", "f.extname == '.jpg' or f.extname == '.jpeg' or f.extname == '.png' or f.extname == '.webp' or f.extname == '.JPG' or f.extname == '.JPEG' or f.extname == '.PNG'" | sort: "name" %}
+    {% if p.titelbild %}{% capture bildpfad %}{{ p.dir }}{{ p.titelbild }}{% endcapture %}{% else %}{% assign bildpfad = bilder.first.path %}{% endif %}
+    {% capture slugs %}{% for k in p.kategorie %}{{ k | slugify }} {% endfor %}{% endcapture %}
+    <a class="karte" href="{{ p.url | relative_url }}" data-kategorien="{{ slugs | strip }}">
+      {% if bildpfad %}<img src="{{ bildpfad | relative_url }}" alt="{{ p.titel }}" loading="lazy">{% endif %}
+      <h2>{{ p.titel }}</h2>
+      <span class="meta">{{ p.ort }}{% if p.jahr %}, {{ p.jahr }}{% endif %}</span>
+      {% if p.kurz %}<p>{{ p.kurz }}</p>{% endif %}
+    </a>
+    {% endfor %}
+  </div>
+</div>

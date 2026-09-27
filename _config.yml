@@ -1,0 +1,22 @@
+# Creyation Gafner – Website
+title: Creyation Gafner
+description: Creyation Gafner baut, was es noch nicht gibt. Spezialanfertigungen, Raumgestaltung, Installationen, eigene Produkte und Camperausbau.
+lang: de-CH
+url: "https://www.creyation.ch"
+# Für die Vorschau im Repository "creyation-relaunch". Beim Umzug auf www.creyation.ch: baseurl leer lassen ("") und vorschau: false
+baseurl: "/creyation-relaunch"
+vorschau: true
+
+# Bereiche für den Projektfilter (Reihenfolge = Reihenfolge der Knöpfe)
+kategorien:
+  - Raumgestaltung
+  - Inszenierung & Events
+  - Möbel & Objekte
+  - 3D-Druck & Engineering
+  - Camperausbau
+
+defaults:
+  - scope: { path: "projekte" }
+    values: { layout: projekt }
+
+exclude: [README.md, ANLEITUNG.md, HANDOFF.md, Gemfile, Gemfile.lock, vendor]

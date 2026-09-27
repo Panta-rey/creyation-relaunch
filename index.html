@@ -1,0 +1,194 @@
+---
+layout: standard
+body_klasse: start
+kurz: "Creyation Gafner baut, was es noch nicht gibt: Spezialanfertigungen für Innenarchitektur, Installationen, eigene Produkte und Camperausbau. Werkstatt in Hinteregg ZH."
+---
+{% assign auswahl = site.pages | where_exp: "p", "p.startseite" | sort: "startseite" %}
+
+  <!-- Einstieg: Die Visitenkarte zeichnet sich, wird zum Stuhl, der Stuhl wird zum Logo, die Lampe geht an -->
+  <section class="buehne" id="buehne" data-karte="{{ '/assets/bilder/start/karte26.jpg' | relative_url }}" aria-label="Creyation Gafner" style="padding:0">
+    <div class="falt3d" id="falt3d" aria-hidden="true"></div>
+    <div class="logo-box">
+      {% include logo-animiert.svg %}
+      <p class="anspruch"><span>Have a seat – dream –</span> <span>we talk – I build</span></p>
+    </div>
+    <button class="buehne-steuerung" id="steuerung" type="button">Überspringen</button>
+    <a class="weiter" href="#inhalt">weiter</a>
+  </section>
+
+  <section class="kern" id="inhalt">
+    <div class="wrap">
+      <div>
+        <h1>Ich baue, was es noch nicht gibt.</h1>
+        <p class="lead">Spezialanfertigungen für Innenarchitektur, Inszenierungen für Marken und Events, eigene Produkte. Von der ersten Skizze über CAD, CNC-Fräse und 3D-Drucker bis zum fertigen Objekt, vom Ersatzteil in Handgrösse bis zur 4,5 Meter hohen Skulptur.</p>
+        <p class="zitat">Ihre Idee darf verrückt sein. Ich finde den Weg, sie zu bauen.</p>
+        <div class="aktionen">
+          <a class="btn btn-voll" href="#kontakt">Projekt besprechen</a>
+          <a class="btn" href="{{ '/projekte/' | relative_url }}">Projekte ansehen</a>
+        </div>
+      </div>
+      <figure>
+        <img src="{{ '/assets/bilder/start/faltstuhl.jpg' | relative_url }}" alt="Die Visitenkarte von Creyation Gafner, ohne Schnitt zu einem kleinen Stuhl gefaltet" width="800" height="844">
+        <figcaption class="meta">Meine Visitenkarte, ohne Schnitt zum Stuhl gefaltet.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  {% include faltlinie.html %}
+
+  <section class="standbeine" aria-labelledby="sb-t">
+    <div class="wrap">
+      <div class="kopfzeile-abschnitt"><h2 id="sb-t">Wofür Sie mich holen</h2></div>
+      <ul>
+        <li>
+          <img src="{{ '/assets/bilder/start/mybikeplan.jpg' | relative_url }}" alt="Mybikeplan-Store in Zürich: gelbe Möbel und eine Lichtwand hinter Polycarbonat" loading="lazy">
+          <h3>Umsetzung für Innenarchitektur</h3>
+          <p>Sie planen, ich baue die Teile, die es so nicht zu kaufen gibt: massgenau, vorab in 3D visualisiert, mit koordinierten Partnern.</p>
+          <a class="textlink" href="{{ '/projekte/' | relative_url }}?k=raumgestaltung">Referenzen Innenarchitektur</a>
+        </li>
+        <li>
+          <img src="{{ '/assets/bilder/start/kolibri.jpg' | relative_url }}" alt="Die 4,5 Meter hohe Kolibri-Skulptur am Terrazzza Festival bei Nacht" loading="lazy">
+          <h3>Inszenierung für Marken und Events</h3>
+          <p>Skulpturen, Bühnenbilder und Centerpieces, vor denen Menschen stehen bleiben. Oft mit Licht als Teil der Idee.</p>
+          <a class="textlink" href="{{ '/projekte/' | relative_url }}?k=inszenierung-events">Referenzen Inszenierung</a>
+        </li>
+        <li>
+          <img src="{{ '/assets/bilder/start/katzensofa.jpg' | relative_url }}" alt="Schwarze Katze schläft auf dem Katzensofa von Casa del Paw" loading="lazy">
+          <h3>Eigene Produkte</h3>
+          <p>Möbel und Objekte für Zuhause, Haustiere und Werkstatt. Aus eigener Neugier entwickelt, auf Bestellung gefertigt.</p>
+          <a class="textlink" href="#produkte">Produkte ansehen</a>
+        </li>
+        <li>
+          <img src="{{ '/assets/bilder/start/camper.jpg' | relative_url }}" alt="Ausgebauter VW T4 mit Arvendecke, Bettbank und Holzmöbeln" loading="lazy">
+          <h3>Camperausbau</h3>
+          <p>Vermessen, in 3D planen, CNC-fräsen, einbauen: Möbel, Halterungen und Lösungen für Vans, für Ausbaubetriebe und Private.</p>
+          <a class="textlink" href="{{ '/projekte/' | relative_url }}?k=camperausbau">Referenzen Camperbau</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projekte" aria-labelledby="pr-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="kopfzeile-abschnitt">
+        <div><h2 id="pr-t">Ausgewählte Projekte</h2><p>Eine Auswahl aus über 40 Arbeiten seit 2017.</p></div>
+        <a class="btn" href="{{ '/projekte/' | relative_url }}">Alle Projekte</a>
+      </div>
+      <div class="projekte-raster">
+        {% assign spannen = "s7,s5,s5,s7,s6,s6" | split: "," %}
+        {% for p in auswahl limit: 6 %}
+        {% assign bilder = site.static_files | where_exp: "f", "f.path contains p.dir" | where_exp: "f", "f.extname == '.jpg' or f.extname == '.jpeg' or f.extname == '.png' or f.extname == '.webp' or f.extname == '.JPG'" | sort: "name" %}
+        {% if p.titelbild %}{% capture bildpfad %}{{ p.dir }}{{ p.titelbild }}{% endcapture %}{% else %}{% assign bildpfad = bilder.first.path %}{% endif %}
+        <a class="projekt {{ spannen[forloop.index0] }}" href="{{ p.url | relative_url }}" style="text-decoration:none;color:inherit"><figure style="margin:0"><img src="{{ bildpfad | relative_url }}" alt="{{ p.titel }}" loading="lazy">
+          <figcaption><h3>{{ p.titel }}</h3><span class="meta">{{ p.ort }}, {{ p.jahr }}</span><p>{{ p.kurz }}</p></figcaption></figure></a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="fragen" aria-labelledby="fr-t">
+    <div class="wrap">
+      <div class="kopfzeile-abschnitt">
+        <div><h2 id="fr-t">Frage und Lösung</h2><p>Viele meiner Arbeiten beginnen mit einem Problem, für das es nichts Passendes gibt.</p></div>
+      </div>
+      <div>
+        <article class="frage">
+          <img src="{{ '/assets/bilder/start/spuckschutz.jpg' | relative_url }}" alt="Detail: Der Spuckschutz greift mit einer geschwungenen Holzklammer um die Thekenkante" loading="lazy">
+          <div><p class="q">Ein Spuckschutz, der nicht umfällt?</p><p>Er greift sich selbst an die Theke. Keine Schrauben, kein Kleber, keine Chance umzukippen.</p></div>
+        </article>
+        <article class="frage">
+          <img src="{{ '/assets/bilder/start/katzenhaus.jpg' | relative_url }}" alt="Offenes Katzenhaus mit Bett, Futterautomat und Sensoren, daneben eine schwarze Katze" loading="lazy">
+          <div><p class="q">Ein Katzenhaus lüften, ohne dass es im Winter auskühlt?</p><p>Mit einem selbst entwickelten Wärmetauscher: Die warme Abluft wärmt die kalte Frischluft vor. Dazu Luftqualitätsmessung, beheiztes Bett und Kamera.</p></div>
+        </article>
+        <article class="frage">
+          <img src="{{ '/assets/bilder/start/faltprozess.jpg' | relative_url }}" alt="Von links: Handskizze des Faltmusters, die gedruckte Karte und der daraus gefaltete Stuhl" loading="lazy" style="aspect-ratio:2/1">
+          <div><p class="q">Eine Visitenkarte, die «Have a seat» sagt?</p><p>Sie lässt sich ohne einen einzigen Schnitt zu einem Stuhl falten. Aus diesem Stuhl ist später mein Logo entstanden.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ablauf" aria-labelledby="ab-t">
+    <div class="wrap">
+      <div class="kopfzeile-abschnitt"><h2 id="ab-t">So arbeiten wir zusammen</h2></div>
+      <ol>
+        <li><h3>Have a seat</h3><p>Wir setzen uns hin. Sie erzählen, was Sie vorhaben, oder was bisher nicht funktioniert.</p></li>
+        <li><h3>dream</h3><p>Ich entwickle die Idee weiter und visualisiere sie in 3D. Sie sehen, was entsteht, bevor es entsteht.</p></li>
+        <li><h3>we talk</h3><p>Wir schärfen das Konzept gemeinsam. Sie erhalten eine klare Offerte, Schritt für Schritt erklärt.</p></li>
+        <li><h3>I build</h3><p>Ich baue in meiner Werkstatt in Hinteregg und koordiniere spezialisierte Partner, bis alles steht.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="produkte" id="produkte" aria-labelledby="pd-t">
+    <div class="wrap">
+      <div class="kopfzeile-abschnitt">
+        <div><h2 id="pd-t">Eigene Produkte</h2><p>Für Zuhause, für Haustiere und für die Werkstatt.</p></div>
+        <a class="btn" href="#produkte">Alle Produkte</a>
+      </div>
+      <ul>
+        <li><img src="{{ '/assets/bilder/start/motutane.jpg' | relative_url }}" alt="MOTU TANE: runder Couchtisch in Crème mit zwei geschwungenen Wangen" loading="lazy"><h3>MOTU TANE</h3><p>Couchtisch aus lackiertem Holz, in verschiedenen Farben.</p></li>
+        <li><img src="{{ '/assets/bilder/start/xipe.jpg' | relative_url }}" alt="XIPE: LED-Anzuchtregal aus Holz in Hausform voller Setzlinge" loading="lazy"><h3>XIPE</h3><p>LED-Gewächshaus für Setzlinge, gesteckt und erweiterbar.</p></li>
+        <li><img src="{{ '/assets/bilder/start/casadelpaw.jpg' | relative_url }}" alt="Katzensofa von Casa del Paw mit olivgrünem Bezug, daneben der rosa Beistelltisch Vitruvius" loading="lazy"><h3>Casa del Paw</h3><p>Katzensofa in sieben Stoffen und drei Holztönen.</p></li>
+        <li><img src="{{ '/assets/bilder/start/toilette.jpg' | relative_url }}" alt="Die ätherische Toilette: goldene Mini-Toilette mit blauer Filzeinlage" loading="lazy"><h3>Die ätherische Toilette</h3><p>Duft für die Autolüftung, mit ätherischem Öl befüllbar.</p></li>
+      </ul>
+      <p class="hinweis">Alle Produkte werden in der Schweiz auf Bestellung gefertigt.</p>
+    </div>
+  </section>
+
+  {% include faltlinie.html %}
+
+  <section class="ueber" id="ueber" aria-labelledby="ue-t">
+    <div class="wrap">
+      <figure>
+        <img src="{{ '/assets/bilder/start/cnc.jpg' | relative_url }}" alt="CNC-Fräse bei der Arbeit: aus einer Holzplatte werden Einzelteile gefräst" loading="lazy">
+        <figcaption class="meta">Aus der Fläche in den Raum: Plattenteile frisch ab der CNC-Fräse.</figcaption>
+      </figure>
+      <div>
+        <h2 id="ue-t">Rey Gafner</h2>
+        <p class="lead">Ich bin Biologe (MSc UZH) und denke am liebsten mit den Händen.</p>
+        <p>Seit 2017 baue ich als Allrounder, was es so noch nicht gibt: mit CNC-Fräse, 3D-Drucker und Freude an Lösungen, die zuerst niemand für möglich hält. Viele meiner Objekte werden aus flachen Teilen gesteckt statt geschraubt, leicht, zerlegbar und erweiterbar.</p>
+        <p>Was ich nicht selbst mache, übernehmen erfahrene Partnerbetriebe. Die Fäden bleiben bei mir.</p>
+        <a class="textlink" href="#ueber">Mehr über mich</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="referenzen" aria-labelledby="re-t">
+    <div class="wrap">
+      <div class="kopfzeile-abschnitt"><h2 id="re-t" style="font-size:clamp(1.5rem,2.6vw,2.1rem)">Ich durfte arbeiten für und mit</h2></div>
+      <ul class="liste">
+        <li>Hotel Morosani Schweizerhof</li><li>Mybikeplan.ch</li><li>Space 2.0</li><li>Space Monki</li><li>Red Bull</li><li>Jägermeister</li><li>Das Viertel, Basel</li><li>Netzwerk, Basel</li><li>Tension Festival</li><li>Terrazzza Festival</li><li>Modular Festival</li><li>Alta Vista Events</li><li>Watson</li><li>Creamelt / Label Reversed</li><li>Camper&amp;Cars</li><li>Custom Campers</li><li>Physio Medifit</li><li>Bläsikrippe, Basel</li><li>Baumhaus, Zürich</li><li>Echo from Venus</li><li>Heimat (Koch &amp; Gsell AG)</li><li>Restaurant Krokodil</li><li>Makita Schweiz</li><li>Atelier Achtundzwanzig</li><li>Neomat AG</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="kontakt" id="kontakt" aria-labelledby="ko-t">
+    <div class="wrap">
+      <div>
+        <h2 id="ko-t">Let's work together</h2>
+        <p>Erzählen Sie mir von Ihrer Idee oder Ihrem Problem. Ich melde mich persönlich.</p>
+        <address>
+          <span><strong>Werkstatt</strong>Stifelacher 3, 8132 Hinteregg</span>
+          <span><strong>Büro</strong>Dörflistrasse 1C, 8903 Birmensdorf</span>
+          <span><strong>E-Mail</strong><a href="mailto:rey@creyation.ch">rey@creyation.ch</a></span>
+          <span><strong>Instagram</strong><a href="https://www.instagram.com/creyationgafner" rel="noopener" target="_blank">@creyationgafner</a> und <a href="https://www.instagram.com/casadelpaw" rel="noopener" target="_blank">@casadelpaw</a></span>
+        </address>
+      </div>
+      <form id="formular" novalidate>
+        <fieldset class="anliegen">
+          <legend>Worum geht es?</legend>
+          <input type="radio" name="anliegen" id="a1" value="Umsetzung für Innenarchitektur" checked><label for="a1">Innenarchitektur</label>
+          <input type="radio" name="anliegen" id="a2" value="Inszenierung für Marken und Events"><label for="a2">Inszenierung</label>
+          <input type="radio" name="anliegen" id="a3" value="Produkt"><label for="a3">Produkt</label>
+          <input type="radio" name="anliegen" id="a5" value="Camperausbau"><label for="a5">Camperausbau</label>
+          <input type="radio" name="anliegen" id="a4" value="Anderes"><label for="a4">Anderes</label>
+        </fieldset>
+        <div class="feld"><label for="f-name">Name</label><input type="text" id="f-name" name="name" autocomplete="name" required></div>
+        <div class="feld"><label for="f-mail">E-Mail</label><input type="email" id="f-mail" name="email" autocomplete="email" required></div>
+        <div class="feld"><label for="f-text">Nachricht</label><textarea id="f-text" name="nachricht" required></textarea></div>
+        <div><button class="btn btn-voll" type="submit">Nachricht senden</button></div>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>

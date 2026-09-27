@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% if page.titel %}{{ page.titel }} – {% endif %}{{ site.title }}{% unless page.titel %} – Rey Gafner{% endunless %}</title>
+<meta name="description" content="{{ page.kurz | default: site.description | escape }}">
+{% if site.vorschau %}<meta name="robots" content="noindex">{% endif %}
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='black'/><path d='M16 5 L25 21 H7 Z' fill='none' stroke='white' stroke-width='1.6'/><circle cx='16' cy='19' r='2.4' fill='white'/></svg>">
+<link rel="stylesheet" href="{{ '/assets/css/stil.css' | relative_url }}">
+</head>
+<body class="{{ page.body_klasse | default: 'unterseite' }}">
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+{% include kopf.html %}
+<main id="top">
+{{ content }}
+</main>
+{% include fuss.html %}
+<dialog class="gross" id="gross" aria-label="Bild gross"><img alt=""><button class="zu" type="button">Schliessen</button><button class="rueck" type="button" aria-label="Vorheriges Bild">zurück</button><button class="vor" type="button" aria-label="Nächstes Bild">weiter</button></dialog>
+{% if page.body_klasse == 'start' %}<script src="{{ '/assets/js/three.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/falten.js' | relative_url }}"></script>{% endif %}
+<script src="{{ '/assets/js/seite.js' | relative_url }}"></script>
+</body>
+</html>
