@@ -77,8 +77,8 @@ kurz: "Creyation Gafner baut, was es noch nicht gibt: Spezialanfertigungen für 
       <div class="projekte-raster">
         {% assign spannen = "s7,s5,s5,s7,s6,s6" | split: "," %}
         {% for p in auswahl limit: 6 %}
-        {% assign bilder = site.static_files | where_exp: "f", "f.path contains p.dir" | where_exp: "f", "f.extname == '.jpg' or f.extname == '.jpeg' or f.extname == '.png' or f.extname == '.webp' or f.extname == '.JPG'" | sort: "name" %}
-        {% if p.titelbild %}{% capture bildpfad %}{{ p.dir }}{{ p.titelbild }}{% endcapture %}{% else %}{% assign bildpfad = bilder.first.path %}{% endif %}
+        {% assign kandidaten = site.static_files | where_exp: "f", "f.path contains p.dir" | sort: "name" %}{% capture bildliste_txt %}{% for f in kandidaten %}{% assign ext = f.extname | downcase %}{% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.webp' %}{{ f.path }}|{% endif %}{% endfor %}{% endcapture %}{% assign bilder = bildliste_txt | split: '|' %}
+        {% if p.titelbild %}{% capture bildpfad %}{{ p.dir }}{{ p.titelbild }}{% endcapture %}{% else %}{% assign bildpfad = bilder.first %}{% endif %}
         <a class="projekt {{ spannen[forloop.index0] }}" href="{{ p.url | relative_url }}" style="text-decoration:none;color:inherit"><figure style="margin:0"><img src="{{ bildpfad | relative_url }}" alt="{{ p.titel }}" loading="lazy">
           <figcaption><h3>{{ p.titel }}</h3><span class="meta">{{ p.ort }}, {{ p.jahr }}</span><p>{{ p.kurz }}</p></figcaption></figure></a>
         {% endfor %}

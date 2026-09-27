@@ -3,7 +3,7 @@ layout: standard
 titel: Projekte
 kurz: Spezialanfertigungen, Raumgestaltung, Installationen, Möbel, 3D-Druck und Camperausbau von Creyation Gafner.
 ---
-{% assign alle = site.pages | where_exp: "p", "p.url contains '/projekte/' and p.name == 'index.md'" | sort: "jahr" | reverse %}
+{% assign alle = site.pages | where_exp: "p", "p.url contains '/projekte/'" | where_exp: "p", "p.name == 'index.md'" | sort: "jahr" | reverse %}
 <div class="wrap" id="inhalt">
   <header class="seitenkopf">
     <h1>Projekte</h1>
@@ -15,8 +15,8 @@ kurz: Spezialanfertigungen, Raumgestaltung, Installationen, Möbel, 3D-Druck und
   </ul>
   <div class="karten">
     {% for p in alle %}
-    {% assign bilder = site.static_files | where_exp: "f", "f.path contains p.dir" | where_exp: "f", "f.extname == '.jpg' or f.extname == '.jpeg' or f.extname == '.png' or f.extname == '.webp' or f.extname == '.JPG' or f.extname == '.JPEG' or f.extname == '.PNG'" | sort: "name" %}
-    {% if p.titelbild %}{% capture bildpfad %}{{ p.dir }}{{ p.titelbild }}{% endcapture %}{% else %}{% assign bildpfad = bilder.first.path %}{% endif %}
+    {% assign kandidaten = site.static_files | where_exp: "f", "f.path contains p.dir" | sort: "name" %}{% capture bildliste_txt %}{% for f in kandidaten %}{% assign ext = f.extname | downcase %}{% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.webp' %}{{ f.path }}|{% endif %}{% endfor %}{% endcapture %}{% assign bilder = bildliste_txt | split: '|' %}
+    {% if p.titelbild %}{% capture bildpfad %}{{ p.dir }}{{ p.titelbild }}{% endcapture %}{% else %}{% assign bildpfad = bilder.first %}{% endif %}
     {% capture slugs %}{% for k in p.kategorie %}{{ k | slugify }} {% endfor %}{% endcapture %}
     <a class="karte" href="{{ p.url | relative_url }}" data-kategorien="{{ slugs | strip }}">
       {% if bildpfad %}<img src="{{ bildpfad | relative_url }}" alt="{{ p.titel }}" loading="lazy">{% endif %}
