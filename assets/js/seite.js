@@ -112,6 +112,28 @@
     });
   }
 
+
+  // ---------- Produkte: Farbwahl ----------
+  document.querySelectorAll('.produktkarte').forEach(function (karte) {
+    var knoepfe = karte.querySelectorAll('.farbe'), bildEl = karte.querySelector('[data-produktbild]'), name = karte.querySelector('.farbname'), anfrage = karte.querySelector('[data-produkt]');
+    knoepfe.forEach(function (b) {
+      b.addEventListener('click', function () {
+        knoepfe.forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        bildEl.src = b.getAttribute('data-bild'); name.textContent = b.getAttribute('data-name');
+        if (anfrage) anfrage.href = anfrage.href.split('?')[0] + '?produkt=' + encodeURIComponent(anfrage.getAttribute('data-produkt') + ', Farbe ' + b.getAttribute('data-name')) + '#kontakt';
+      });
+    });
+  });
+
+  // ---------- Anfrage aus der Produktseite vorausfüllen ----------
+  var produkt = new URLSearchParams(location.search).get('produkt');
+  var formular = document.getElementById('formular');
+  if (produkt && formular) {
+    var radio = document.getElementById('a3'); if (radio) radio.checked = true;
+    var feld = document.getElementById('f-text');
+    if (feld && !feld.value) feld.value = 'Guten Tag Herr Gafner\n\nIch interessiere mich für: ' + produkt + '\n\n';
+  }
+
   var jahr = document.getElementById('jahr');
   if (jahr) jahr.textContent = new Date().getFullYear();
 })();

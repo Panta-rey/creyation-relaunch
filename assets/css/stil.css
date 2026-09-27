@@ -288,3 +288,17 @@ dialog.gross img { position: absolute; inset: 0; margin: auto; max-width: 92vw; 
 dialog.gross button { position: absolute; background: none; border: 1px solid #fff8; color: #fff; font: 400 .9rem var(--font); letter-spacing: .06em; padding: .5rem .9rem; cursor: pointer; }
 dialog.gross .zu { top: calc(1rem + env(safe-area-inset-top, 0px)); right: 1rem; }
 dialog.gross .vor { right: 1rem; bottom: 1rem; } dialog.gross .rueck { left: 1rem; bottom: 1rem; }
+
+/* Produktseite */
+.produktlinie { padding: 0 0 clamp(3rem, 6vw, 5rem); }
+.produktlinie > h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); border-top: 1px solid #000; padding-top: 1.2rem; margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.produktlinie .karten { padding-bottom: 0; }
+.produktkarte { display: flex; flex-direction: column; }
+.produktkarte img { width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--band); margin-bottom: 1rem; }
+.produktkarte h3 { font-size: 1.3rem; letter-spacing: .04em; margin-bottom: .2rem; }
+.produktkarte p { margin: .4rem 0 0; font-size: 1rem; }
+.produktkarte .btn { align-self: flex-start; margin-top: 1.2rem; }
+.farben { display: flex; align-items: center; gap: .5rem; margin-top: .9rem; flex-wrap: wrap; }
+.farbe { width: 1.9rem; height: 1.9rem; border-radius: 50%; border: 1px solid #0004; background: var(--f); cursor: pointer; padding: 0; }
+.farbe[aria-pressed="true"] { outline: 2px solid #000; outline-offset: 2px; }
+.farbname { font-size: .9rem; color: var(--grau); margin-left: .3rem; }

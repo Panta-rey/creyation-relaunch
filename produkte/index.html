@@ -1,0 +1,35 @@
+---
+layout: standard
+titel: Eigene Produkte
+kurz: "Eigene Produkte von Creyation Gafner für Zuhause, Haustiere und Werkstatt, in der Schweiz auf Bestellung gefertigt."
+---
+<div class="wrap" id="inhalt">
+  <header class="seitenkopf">
+    <h1>Eigene Produkte</h1>
+    <p class="lead">Entwickelt aus eigener Neugier, gefertigt auf Bestellung in meiner Werkstatt in Hinteregg. Preis und Lieferzeit auf Anfrage.</p>
+  </header>
+  {% assign linien = "Home,Haustiere,Werkstatt" | split: "," %}
+  {% for linie in linien %}
+  {% assign liste = site.data.produkte | where: "linie", linie %}
+  {% if liste.size > 0 %}
+  <section class="produktlinie" aria-labelledby="linie-{{ linie | slugify }}">
+    <h2 id="linie-{{ linie | slugify }}">{{ linie }}</h2>
+    <div class="karten">
+      {% for p in liste %}
+      <article class="produktkarte" id="{{ p.id }}">
+        <img src="{{ '/assets/bilder/produkte/' | append: p.bild | relative_url }}" alt="{{ p.name }}" loading="lazy" data-produktbild>
+        <h3>{{ p.name }}</h3>
+        <p class="meta">{{ p.masse }} cm (L × B × H)</p>
+        <p>{{ p.text }}</p>
+        {% if p.farben %}<div class="farben" role="group" aria-label="Farbe wählen">
+          {% for f in p.farben %}<button type="button" class="farbe" style="--f:{{ f.hex }}" data-bild="{{ '/assets/bilder/produkte/' | append: f.bild | relative_url }}" data-name="{{ f.name }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" title="{{ f.name }}"><span class="sr-only">{{ f.name }}</span></button>{% endfor %}
+          <span class="farbname">{{ p.farben.first.name }}</span>
+        </div>{% endif %}
+        <a class="btn" href="{{ '/' | relative_url }}?produkt={{ p.name | uri_escape }}#kontakt" data-produkt="{{ p.name }}">Anfrage senden</a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+</div>
