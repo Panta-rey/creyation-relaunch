@@ -96,7 +96,7 @@
     dlg.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') zeige(idx + 1); if (e.key === 'ArrowLeft') zeige(idx - 1); });
   }
 
-  // ---------- Kontaktformular (vorerst über das E-Mail-Programm) ----------
+  // ---------- Kontaktformular: über den Formulardienst, sonst über das E-Mail-Programm ----------
   var form = document.getElementById('formular');
   if (form) {
     var status = form.querySelector('.status');
@@ -104,14 +104,25 @@
       e.preventDefault();
       var d = new FormData(form);
       if (!String(d.get('name')).trim() || !String(d.get('nachricht')).trim()) { status.textContent = 'Bitte Name und Nachricht ausfüllen.'; return; }
-      if (!form.email.checkValidity()) { status.textContent = 'Bitte die E-Mail-Adresse prüfen.'; form.email.focus(); return; }
+      if (!form.email.checkValidity() || !String(d.get('email')).trim()) { status.textContent = 'Bitte die E-Mail-Adresse prüfen.'; form.email.focus(); return; }
       var betreff = d.get('anliegen') + ' – Anfrage von ' + d.get('name');
+      var ziel = form.getAttribute('data-ziel');
+      if (ziel && window.fetch) {
+        d.append('_subject', betreff);
+        var knopf = form.querySelector('button[type=submit]'); knopf.disabled = true; status.textContent = 'Wird gesendet …';
+        fetch(ziel, { method: 'POST', body: d, headers: { 'Accept': 'application/json' } }).then(function (r) {
+          if (!r.ok) throw new Error('Fehler ' + r.status);
+          form.reset(); status.className = 'status danke'; status.textContent = 'Danke für Ihre Nachricht. Ich melde mich persönlich bei Ihnen.';
+        }).catch(function () {
+          status.textContent = 'Das Senden hat nicht geklappt. Bitte schreiben Sie direkt an rey@creyation.ch.';
+        }).then(function () { knopf.disabled = false; });
+        return;
+      }
       var text = d.get('nachricht') + '\n\n—\n' + d.get('name') + '\n' + d.get('email');
       window.location.href = 'mailto:rey@creyation.ch?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(text);
       status.textContent = 'Ihr E-Mail-Programm wurde geöffnet. Senden Sie die Nachricht dort ab.';
     });
   }
-
 
   // ---------- Produkte: Farbwahl ----------
   document.querySelectorAll('.produktkarte').forEach(function (karte) {
@@ -132,6 +143,31 @@
     var radio = document.getElementById('a3'); if (radio) radio.checked = true;
     var feld = document.getElementById('f-text');
     if (feld && !feld.value) feld.value = 'Guten Tag Herr Gafner\n\nIch interessiere mich für: ' + produkt + '\n\n';
+  }
+
+  // ---------- Casa del Paw: Stoff und Holz wählen ----------
+  var konfDaten = document.getElementById('konf-daten');
+  if (konfDaten) {
+    var K = JSON.parse(konfDaten.textContent), wahl = { stoff: 'haifa', holz: 'natur' };
+    var name = function (liste, id) { for (var i = 0; i < liste.length; i++) if (liste[i].id === id) return liste[i].name; return id; };
+    var zeigeKonf = function () {
+      var st = name(K.daten.stoffe, wahl.stoff), hz = name(K.daten.holz, wahl.holz);
+      var datei = K.daten.kombis[wahl.stoff + '|' + wahl.holz], genau = !!datei;
+      if (!datei) datei = K.daten.kombis[wahl.stoff + '|natur'];
+      var foto = document.getElementById('konf-foto');
+      foto.src = K.basis + datei; foto.alt = 'Katzensofa, Stoff ' + st + ', Holz ' + (genau ? hz : 'Natur');
+      document.getElementById('konf-legende').textContent = genau ? st + ', Holz ' + hz : 'Foto: ' + st + ' mit Holz Natur. Ihr Sofa wird in ' + hz + ' gefertigt, siehe Holzmuster.';
+      document.getElementById('stoff-name').textContent = st; document.getElementById('holz-name').textContent = hz;
+      document.getElementById('holz-foto').src = K.basis + 'holz-' + wahl.holz + '.jpg';
+      document.getElementById('holz-foto').alt = 'Holzton ' + hz + ' im Detail';
+      document.getElementById('konf-anfrage').href = K.kontakt + '?produkt=' + encodeURIComponent('Casa del Paw Katzensofa, Stoff ' + st + ', Holz ' + hz);
+    };
+    document.querySelectorAll('[data-stoff]').forEach(function (b) {
+      b.addEventListener('click', function () { wahl.stoff = b.getAttribute('data-stoff'); document.querySelectorAll('[data-stoff]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); zeigeKonf(); });
+    });
+    document.querySelectorAll('[data-holz]').forEach(function (b) {
+      b.addEventListener('click', function () { wahl.holz = b.getAttribute('data-holz'); document.querySelectorAll('[data-holz]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); }); zeigeKonf(); });
+    });
   }
 
   var jahr = document.getElementById('jahr');

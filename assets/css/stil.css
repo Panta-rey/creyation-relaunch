@@ -302,3 +302,51 @@ dialog.gross .vor { right: 1rem; bottom: 1rem; } dialog.gross .rueck { left: 1re
 .farbe { width: 1.9rem; height: 1.9rem; border-radius: 50%; border: 1px solid #0004; background: var(--f); cursor: pointer; padding: 0; }
 .farbe[aria-pressed="true"] { outline: 2px solid #000; outline-offset: 2px; }
 .farbname { font-size: .9rem; color: var(--grau); margin-left: .3rem; }
+
+/* Casa del Paw */
+.cdp-kopf { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: center; padding: 1rem 0 clamp(2.5rem, 5vw, 4rem); }
+.cdp-kopf img { width: 100%; max-width: 20rem; }
+.cdp-kopf h1 { font-size: clamp(2rem, 4.5vw, 3.4rem); margin-bottom: 1rem; }
+.konfigurator { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; padding-bottom: clamp(3rem, 6vw, 5rem); }
+.konf-bild { margin: 0; }
+.konf-bild img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: var(--band); }
+.konf-bild figcaption { margin-top: .6rem; }
+.konf-wahl h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin-bottom: 1.2rem; }
+.konf-wahl fieldset { border: 0; padding: 0; margin: 0 0 1.4rem; }
+.konf-wahl legend { font-size: .95rem; margin-bottom: .6rem; }
+.konf-wahl legend span { color: var(--grau); margin-left: .4rem; }
+.muster { display: flex; flex-wrap: wrap; gap: .55rem; }
+.muster .farbe { width: 2.4rem; height: 2.4rem; }
+.holzmuster { margin: 0 0 1.5rem; display: flex; gap: 1rem; align-items: center; }
+.holzmuster img { width: 6rem; height: 6rem; object-fit: cover; }
+.cdp-zusatz { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: center; border-top: 1px solid #000; padding: clamp(2.5rem, 5vw, 4rem) 0; }
+.cdp-zusatz h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin-bottom: 1rem; }
+.cdp-zusatz img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.happy { border-top: 1px solid #000; padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(4rem, 8vw, 6rem); }
+.happy h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin-bottom: 1.5rem; }
+.happy-raster { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.happy-raster img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+@media (max-width: 760px) { .cdp-kopf, .konfigurator, .cdp-zusatz { grid-template-columns: minmax(0, 1fr); } .happy-raster { grid-template-columns: minmax(0, 1fr); } }
+
+/* Über mich */
+.ueber-kopf { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; padding: clamp(3rem, 7vw, 6rem) 0 clamp(3rem, 6vw, 5rem); }
+.ueber-kopf figure { margin: 0; }
+.ueber-kopf img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; filter: grayscale(1); }
+.ueber-kopf h1 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); margin-bottom: 1.2rem; }
+.karte-geschichte, .werkstatt, .handschrift { border-top: 1px solid #000; padding: clamp(2.5rem, 5vw, 4rem) 0; }
+.karte-geschichte h2, .werkstatt h2, .handschrift h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 1.5rem; }
+.zweispaltig { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.faltmuster { width: 100%; max-width: 22rem; justify-self: center; box-shadow: 0 0 0 1px #0002; }
+.karte-geschichte .breit { width: 100%; margin-top: clamp(2rem, 4vw, 3rem); aspect-ratio: 2 / 1; object-fit: cover; }
+.werkstatt img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.handschrift ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 3rem; }
+.handschrift li { border-left: 1px solid #000; padding-left: 1rem; max-width: 34rem; }
+.handschrift strong { font-weight: 600; display: block; margin-bottom: .2rem; }
+@media (max-width: 760px) { .ueber-kopf, .zweispaltig, .handschrift ul { grid-template-columns: minmax(0, 1fr); } .ueber-kopf figure { max-width: 22rem; } }
+
+/* Textseiten (Impressum, Datenschutz) */
+.textseite { padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: clamp(4rem, 8vw, 7rem); max-width: 50rem; margin-left: 0; }
+.textseite h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 2rem; }
+.textseite h2 { font-size: 1.25rem; font-weight: 600; margin: 2.2rem 0 .6rem; letter-spacing: .01em; }
+.textseite p { max-width: 42rem; }
+.danke { background: #fff; padding: 1rem 1.2rem; border-left: 2px solid #000; }

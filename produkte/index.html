@@ -25,7 +25,7 @@ kurz: "Eigene Produkte von Creyation Gafner für Zuhause, Haustiere und Werkstat
           {% for f in p.farben %}<button type="button" class="farbe" style="--f:{{ f.hex }}" data-bild="{{ '/assets/bilder/produkte/' | append: f.bild | relative_url }}" data-name="{{ f.name }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" title="{{ f.name }}"><span class="sr-only">{{ f.name }}</span></button>{% endfor %}
           <span class="farbname">{{ p.farben.first.name }}</span>
         </div>{% endif %}
-        <a class="btn" href="{{ '/' | relative_url }}?produkt={{ p.name | uri_escape }}#kontakt" data-produkt="{{ p.name }}">Anfrage senden</a>
+        {% if p.seite %}<a class="btn btn-voll" href="{{ p.seite | relative_url }}">Stoff und Holz wählen</a>{% else %}<a class="btn" href="{{ '/kontakt/' | relative_url }}?produkt={{ p.name | uri_escape }}" data-produkt="{{ p.name }}">Anfrage senden</a>{% endif %}
       </article>
       {% endfor %}
     </div>

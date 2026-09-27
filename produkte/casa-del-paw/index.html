@@ -1,0 +1,55 @@
+---
+layout: standard
+titel: Casa del Paw
+kurz: "Casa del Paw: das Katzensofa von Creyation Gafner, in sieben Stoffen und drei Holztönen, in der Schweiz von Hand gefertigt."
+---
+{% assign cdp = site.data.casadelpaw %}
+<div class="wrap" id="inhalt">
+  <a class="zurueck" href="{{ '/produkte/' | relative_url }}" style="margin-top:clamp(2rem,5vw,4rem)">Alle Produkte</a>
+  <header class="cdp-kopf">
+    <img src="{{ '/assets/bilder/casadelpaw/casa-del-paw-logo.png' | relative_url }}" alt="Casa del Paw" width="320">
+    <div>
+      <h1>Ein Sofa für das bequemste Nickerchen</h1>
+      <p class="lead">Das Katzensofa von Casa del Paw: Rahmen aus Holz, Füsse als Katzenpfoten aus dem 3D-Drucker, Polster in sieben Stoffen. Entworfen und von Hand gefertigt in der Schweiz.</p>
+      <p class="meta">40 × 83 × 42 cm (L × B × H). Preis und Lieferzeit auf Anfrage.</p>
+    </div>
+  </header>
+
+  <section class="konfigurator" aria-labelledby="konf-t">
+    <figure class="konf-bild">
+      <img id="konf-foto" src="{{ '/assets/bilder/casadelpaw/haifa-natur.jpg' | relative_url }}" alt="Katzensofa, Stoff Haifa, Holz Natur">
+      <figcaption id="konf-legende" class="meta">Haifa, Holz Natur</figcaption>
+    </figure>
+    <div class="konf-wahl">
+      <h2 id="konf-t">Ihr Sofa zusammenstellen</h2>
+      <fieldset>
+        <legend>Stoff <span id="stoff-name">Haifa</span></legend>
+        <div class="muster">{% for s in cdp.stoffe %}<button type="button" class="farbe" style="--f:{{ s.hex }}" data-stoff="{{ s.id }}" data-name="{{ s.name }}" aria-pressed="{% if s.id == 'haifa' %}true{% else %}false{% endif %}" title="{{ s.name }}"><span class="sr-only">{{ s.name }}</span></button>{% endfor %}</div>
+      </fieldset>
+      <fieldset>
+        <legend>Holz <span id="holz-name">Natur</span></legend>
+        <div class="muster">{% for h in cdp.holz %}<button type="button" class="farbe" style="--f:{{ h.hex }}" data-holz="{{ h.id }}" data-name="{{ h.name }}" aria-pressed="{% if h.id == 'natur' %}true{% else %}false{% endif %}" title="{{ h.name }}"><span class="sr-only">{{ h.name }}</span></button>{% endfor %}</div>
+      </fieldset>
+      <figure class="holzmuster"><img id="holz-foto" src="{{ '/assets/bilder/casadelpaw/holz-natur.jpg' | relative_url }}" alt="Holzton Natur im Detail"><figcaption class="meta" id="holz-hinweis">Holzton im Detail</figcaption></figure>
+      <a class="btn btn-voll" id="konf-anfrage" href="{{ '/kontakt/' | relative_url }}?produkt={{ 'Casa del Paw Katzensofa, Stoff Haifa, Holz Natur' | uri_escape }}">Anfrage senden</a>
+    </div>
+  </section>
+  <script type="application/json" id="konf-daten">{"basis": "{{ '/assets/bilder/casadelpaw/' | relative_url }}", "kontakt": "{{ '/kontakt/' | relative_url }}", "daten": {{ cdp | jsonify }}}</script>
+
+  <section class="cdp-zusatz">
+    <div>
+      <h2>Jedes Sofa braucht einen Beistelltisch</h2>
+      <p>Vitruvius verbindet den Grundriss einer Katzenpfote mit einer dorischen Säule. Darauf findet das Katzengras seinen Platz.</p>
+      <a class="textlink" href="{{ '/produkte/' | relative_url }}#vitruvius">Zu Vitruvius</a>
+    </div>
+    <img src="{{ '/assets/bilder/casadelpaw/mit-vitruvius.jpg' | relative_url }}" alt="Katzensofa mit dem rosa Beistelltisch Vitruvius und Katzengras" loading="lazy">
+  </section>
+
+  <section class="happy" aria-labelledby="happy-t">
+    <h2 id="happy-t">Happy Clients</h2>
+    <div class="happy-raster">
+      {% for i in (1..3) %}<img src="{{ '/assets/bilder/casadelpaw/happy-' | append: i | append: '.jpg' | relative_url }}" alt="Zufriedene Katze auf ihrem Casa-del-Paw-Sofa" loading="lazy">{% endfor %}
+    </div>
+    <p class="meta">Mehr auf Instagram: <a href="https://www.instagram.com/casadelpaw" rel="noopener" target="_blank">@casadelpaw</a></p>
+  </section>
+</div>

@@ -1,0 +1,74 @@
+{
+ "stoffe": [
+  {
+   "id": "bilbao",
+   "name": "Bilbao",
+   "hex": "#745E2C"
+  },
+  {
+   "id": "haifa",
+   "name": "Haifa",
+   "hex": "#3B3C15"
+  },
+  {
+   "id": "palm-beach",
+   "name": "Palm Beach",
+   "hex": "#67869C"
+  },
+  {
+   "id": "roebuck",
+   "name": "Roebuck",
+   "hex": "#953E09"
+  },
+  {
+   "id": "st-tropez",
+   "name": "St Tropez",
+   "hex": "#A95D3C"
+  },
+  {
+   "id": "kas",
+   "name": "Kas",
+   "hex": "#887A50"
+  },
+  {
+   "id": "nikitas",
+   "name": "Nikitas",
+   "hex": "#A1726E"
+  }
+ ],
+ "holz": [
+  {
+   "id": "natur",
+   "name": "Natur",
+   "hex": "#E3CFA0",
+   "bild": "holz-natur.jpg"
+  },
+  {
+   "id": "cognac",
+   "name": "Cognac",
+   "hex": "#A8662F",
+   "bild": "holz-cognac.jpg"
+  },
+  {
+   "id": "chocolat",
+   "name": "Chocolat",
+   "hex": "#5A3D2B",
+   "bild": "holz-chocolat.jpg"
+  }
+ ],
+ "kombis": {
+  "bilbao|natur": "bilbao-natur.jpg",
+  "haifa|natur": "haifa-natur.jpg",
+  "palm-beach|natur": "palm-beach-natur.jpg",
+  "roebuck|natur": "roebuck-natur.jpg",
+  "st-tropez|natur": "st-tropez-natur.jpg",
+  "kas|natur": "kas-natur.jpg",
+  "nikitas|natur": "nikitas-natur.jpg",
+  "nikitas|cognac": "nikitas-cognac.jpg",
+  "roebuck|cognac": "roebuck-cognac.jpg",
+  "bilbao|cognac": "bilbao-cognac.jpg",
+  "kas|chocolat": "kas-chocolat.jpg",
+  "haifa|chocolat": "haifa-chocolat.jpg",
+  "nikitas|chocolat": "nikitas-chocolat.jpg"
+ }
+}

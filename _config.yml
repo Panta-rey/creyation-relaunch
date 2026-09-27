@@ -7,6 +7,12 @@ url: "https://www.creyation.ch"
 baseurl: "/creyation-relaunch"
 vorschau: true
 
+# Kontaktformular: Adresse des Formulardienstes (z. B. https://formspree.io/f/xxxxxxxx).
+# Leer = das Formular öffnet das E-Mail-Programm.
+formular_ziel: ""
+# UID aus dem Handelsregister (zefix.ch), z. B. "CHE-123.456.789". Leer = wird nicht angezeigt.
+uid: ""
+
 # Bereiche für den Projektfilter (Reihenfolge = Reihenfolge der Knöpfe)
 kategorien:
   - Raumgestaltung

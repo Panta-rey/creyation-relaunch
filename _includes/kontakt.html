@@ -1,0 +1,30 @@
+<section class="kontakt" id="kontakt" aria-labelledby="ko-t">
+    <div class="wrap">
+      <div>
+        <h2 id="ko-t">Let's work together</h2>
+        <p>Erzählen Sie mir von Ihrer Idee oder Ihrem Problem. Ich melde mich persönlich.</p>
+        <address>
+          <span><strong>Werkstatt</strong>Stifelacher 3, 8132 Hinteregg</span>
+          <span><strong>Büro</strong>Dörflistrasse 1C, 8903 Birmensdorf</span>
+          <span><strong>E-Mail</strong><a href="mailto:rey@creyation.ch">rey@creyation.ch</a></span>
+          <span><strong>Instagram</strong><a href="https://www.instagram.com/creyationgafner" rel="noopener" target="_blank">@creyationgafner</a> und <a href="https://www.instagram.com/casadelpaw" rel="noopener" target="_blank">@casadelpaw</a></span>
+        </address>
+      </div>
+      <form id="formular" novalidate{% if site.formular_ziel != "" %} data-ziel="{{ site.formular_ziel }}"{% endif %}>
+        <fieldset class="anliegen">
+          <legend>Worum geht es?</legend>
+          <input type="radio" name="anliegen" id="a1" value="Umsetzung für Innenarchitektur" checked><label for="a1">Innenarchitektur</label>
+          <input type="radio" name="anliegen" id="a2" value="Inszenierung für Marken und Events"><label for="a2">Inszenierung</label>
+          <input type="radio" name="anliegen" id="a3" value="Produkt"><label for="a3">Produkt</label>
+          <input type="radio" name="anliegen" id="a5" value="Camperausbau"><label for="a5">Camperausbau</label>
+          <input type="radio" name="anliegen" id="a4" value="Anderes"><label for="a4">Anderes</label>
+        </fieldset>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <div class="feld"><label for="f-name">Name</label><input type="text" id="f-name" name="name" autocomplete="name" required></div>
+        <div class="feld"><label for="f-mail">E-Mail</label><input type="email" id="f-mail" name="email" autocomplete="email" required></div>
+        <div class="feld"><label for="f-text">Nachricht</label><textarea id="f-text" name="nachricht" required></textarea></div>
+        <div><button class="btn btn-voll" type="submit">Nachricht senden</button></div>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
